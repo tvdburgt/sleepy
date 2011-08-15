@@ -42,8 +42,8 @@
  */
 
 // Sleepy version/release (used to periodically check for updates)
-const SLEEPY_VERSION = "0.4.4";
-const SLEEPY_RELEASE = 6;
+const SLEEPY_VERSION = "0.4.5";
+const SLEEPY_RELEASE = 7;
 
 // Omerta version (used to distinguish versions)
 const OMERTA_VERSION = (function() {
@@ -1283,16 +1283,18 @@ if (window.location.search.indexOf("?module=Mail") != -1 && getValue("mailShortc
 }
 
 // Travel
+/*
 if (window.location.search.indexOf("?module=Travel") != -1 && getValue("quickTravel")) {
   $("a[href*='?module=Travel&action=FetchInfo&CityId=']").click(function() {
     var i = this.href.match(/CityId=(\d)/)[1]
     
     if (confirm("Are you sure you want to travel to " + CITIES[i] + "?")) {
-      window.location = BASE_URL + "BeO/webroot/index.php?module=Travel&action=TravelNow&City=" + i;
+        window.location = BASE_URL + "BeO/webroot/index.php?module=Travel&action=TravelNow&sessionToken=fj23br23b432ibe23uirb23uirb23uirb23uir23burCity=" + i;
     }
     return false;
   });
 }
+*/
 
 
 
@@ -2054,7 +2056,9 @@ if (window.location.pathname == "/smuggling.php" && getValue("smuggling")) {
       row.append('<td>' + cokePrice + '</td>');
       row.append('<td>' + totalProfit + '</td>');
       row.append('<td width="20"><img class="fill" src="' + GM_getResourceURL("fill") + '" title="Fill units" />');
-      row.append('<td width="20"><img class="travel" src="' + GM_getResourceURL("travel") +'" title="Travel" />');
+
+      // Disable travel shortcut since it's using a session token now
+      //row.append('<td width="20"><img class="travel" src="' + GM_getResourceURL("travel") +'" title="Travel" />');
       
       row.find(".fill, .travel").css("cursor", "pointer");
       row.find(".fill, .travel").hide();
