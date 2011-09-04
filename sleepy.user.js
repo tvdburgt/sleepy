@@ -885,7 +885,7 @@ if (window.location.pathname == '/vfo.php') {
   
   var div = $("<div />"), a = $("<a />");
   
-  a.html("Open all vote links in separate tabs");
+  a.html("Open all vote links");
   
   if (lastVote)
     a.append(" (last vote: <b>" + duration((time - lastVote) / 1000) + "</b> ago)");
@@ -902,12 +902,12 @@ if (window.location.pathname == '/vfo.php') {
   $(document.body).prepend(div);
     
   a.click(function() {
-    if (!confirm("Are you sure?"))
+    if (!confirm("Are you sure? This will open a browser tab for every link!"))
       return;
       
     var votelots = $("a[href^='votelot.php']");
     var i = 0;
-    
+
     function openLink() {
       var time = new Date().getTime();
       var percentage = Math.round(((i + 1) / votelots.length) * 100);
@@ -925,7 +925,7 @@ if (window.location.pathname == '/vfo.php') {
       }
     }
     
-    var timer = setInterval(openLink, 500);
+    var timer = setInterval(openLink, 1000);
     openLink();
     
     $("#cancel").live("click", function() {
